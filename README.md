@@ -64,9 +64,17 @@ userscript (BASE + css/js) → widget.js → app/init → modules/jugru → modu
 ## Разработка
 
 ```sh
-vp dev          # локальная «чужая» страница
+vp dev          # локальная «чужая» страница + widget.js/css для userscript
 vp run build    # dist/ + widget.js
 vp check        # форматирование, линт, типы
 ```
+
+### Userscript на JugRu в dev
+
+1. `vp dev` — dev-сервер отдаёт `widget.js` и `widget.css` по тем же путям, что и preview.
+2. В Tampermonkey: `BASE = "http://127.0.0.1:5173/betterevent/"` (порт смотрите в выводе `vp dev`).
+3. После правок в `src/` — обновите страницу на `beta.jugru.org` (пересборка виджета при запросе).
+
+Для проверки без userscript достаточно открыть `http://localhost:5173/betterevent/`.
 
 Стек: Vue 3, TypeScript, Vite+, FEOD.

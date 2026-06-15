@@ -4,6 +4,8 @@ import { features } from "./registry";
 
 export function createFeatureDefaults(): FeatureSettingsData {
   return Object.fromEntries(
-    features.map((feature) => [feature.key, feature.createDefaults()]),
+    features
+      .filter((feature): feature is NonNullable<typeof feature> => feature != null)
+      .map((feature) => [feature.key, feature.createDefaults()]),
   ) as FeatureSettingsData;
 }

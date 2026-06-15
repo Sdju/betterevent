@@ -5,8 +5,7 @@ export function bootstrapJugru(mount: (container: HTMLElement) => void) {
 
   const dock = document.createElement("div");
   dock.setAttribute(DOCK, "");
-  dock.style.cssText =
-    "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2147483647;";
+  dock.style.cssText = "position:fixed;inset:0;z-index:2147483646;pointer-events:none;";
   document.body.append(dock);
   mount(dock);
 }

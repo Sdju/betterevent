@@ -2,7 +2,7 @@ import { createApp, type App as VueApp } from "vue";
 
 import { setAppRoot } from "@/common/utilities/app-root";
 
-import CentralPanel from "../components/central-panel.vue";
+import BetterEventShell from "../components/better-event-shell.vue";
 import type { BetterEventInstance, BetterEventOptions } from "../types/mount-types";
 
 const instances = new WeakMap<HTMLElement, VueApp>();
@@ -30,7 +30,7 @@ export function mountBetterEvent(
   element.dataset.mounted = "true";
   setAppRoot(element);
 
-  const app = createApp(CentralPanel);
+  const app = createApp(BetterEventShell);
   app.mount(element);
   instances.set(element, app);
 

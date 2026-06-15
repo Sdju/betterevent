@@ -20,8 +20,9 @@ defineProps<{
 <style scoped>
 .be-panel {
   box-sizing: border-box;
-  min-width: 280px;
-  max-width: 360px;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
   font-family:
     system-ui,
     -apple-system,
@@ -56,5 +57,7 @@ defineProps<{
 
 .be-panel__body {
   padding: 12px 16px;
+  min-width: 0;
+  overflow: hidden;
 }
 </style>

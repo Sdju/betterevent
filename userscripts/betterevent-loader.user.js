@@ -12,7 +12,8 @@
 (function () {
   "use strict";
 
-  // Локально: vp run build && vp preview → http://127.0.0.1:4173/betterevent/
+  // Локально (dev): vp dev → http://127.0.0.1:5173/betterevent/
+  // Локально (preview): vp run build && vp preview → http://127.0.0.1:4173/betterevent/
   const BASE = "https://sdju.github.io/betterevent/";
   const q = `?_=${Date.now()}`;
 

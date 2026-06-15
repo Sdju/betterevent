@@ -26,7 +26,7 @@ export function migrateSettings(data: unknown): FeatureSettings {
   let version = (data as FeatureSettings | null)?.version ?? 0;
 
   if (version === CURRENT_SETTINGS_VERSION) {
-    return data as FeatureSettings;
+    return { ...createDefaultSettings(), ...(data as FeatureSettings) };
   }
 
   let current = data;
