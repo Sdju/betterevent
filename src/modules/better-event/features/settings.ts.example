@@ -1,0 +1,19 @@
+/**
+ * Шаблон настроек фичи. Скопируйте в `features/<name>/settings.ts`.
+ *
+ * declare module "@/modules/better-event/settings/types" {
+ *   interface FeatureSettings {
+ *     myFeature: MyFeatureSettings;
+ *   }
+ * }
+ */
+
+// export interface MyFeatureSettings {
+//   enabled: boolean;
+// }
+//
+// export const myFeatureDefaults: MyFeatureSettings = {
+//   enabled: false,
+// };
+
+export {};

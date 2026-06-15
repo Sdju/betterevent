@@ -1,5 +1,5 @@
 import { bootstrapJugru } from "@/modules/jugru";
-import { mount } from "@/modules/widget";
+import { mount } from "@/modules/better-event";
 
 export function autostartJugru() {
   if (typeof window === "undefined") return;

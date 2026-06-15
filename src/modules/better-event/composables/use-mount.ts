@@ -2,8 +2,8 @@ import { createApp, type App as VueApp } from "vue";
 
 import { setAppRoot } from "@/common/utilities/app-root";
 
-import WidgetApp from "../components/widget-app.vue";
-import type { WidgetInstance, WidgetOptions } from "../types/widget-types";
+import CentralPanel from "../components/central-panel.vue";
+import type { BetterEventInstance, BetterEventOptions } from "../types/mount-types";
 
 const instances = new WeakMap<HTMLElement, VueApp>();
 
@@ -17,10 +17,10 @@ function resolveTarget(target: string | HTMLElement): HTMLElement {
   return element;
 }
 
-export function mountWidget(
+export function mountBetterEvent(
   target: string | HTMLElement,
-  _options: WidgetOptions = {},
-): WidgetInstance {
+  _options: BetterEventOptions = {},
+): BetterEventInstance {
   const element = resolveTarget(target);
 
   if (element.dataset.mounted === "true" || instances.has(element)) {
@@ -30,7 +30,7 @@ export function mountWidget(
   element.dataset.mounted = "true";
   setAppRoot(element);
 
-  const app = createApp(WidgetApp);
+  const app = createApp(CentralPanel);
   app.mount(element);
   instances.set(element, app);
 
@@ -46,5 +46,5 @@ export function mountWidget(
 }
 
 export function mount(container: HTMLElement): () => void {
-  return mountWidget(container).unmount;
+  return mountBetterEvent(container).unmount;
 }

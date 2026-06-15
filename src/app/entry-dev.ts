@@ -1,3 +1,5 @@
-import { mountWidget } from "@/modules/widget";
+import "../../reference/jugru/palette.css";
 
-mountWidget("#betterevent-widget");
+import { mountBetterEvent } from "@/modules/better-event";
+
+mountBetterEvent("#betterevent-widget");

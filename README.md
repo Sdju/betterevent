@@ -8,12 +8,13 @@
 
 ## Что внутри
 
-| Часть                     | Зачем                                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------------- |
-| `userscripts/`            | Минимальный Tampermonkey-лоадер: только `BASE` + подгрузка `widget.css` / `widget.js` |
-| `src/app/entry-widget.ts` | IIFE-бандл: API монтирования и автозапуск на JugRu                                    |
-| `src/modules/jugru/`      | Логика внедрения на страницу хоста (обновляется вместе с виджетом)                    |
-| `src/modules/widget/`     | UI и composable монтирования виджета                                                  |
+| Часть                       | Зачем                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------- |
+| `userscripts/`              | Минимальный Tampermonkey-лоадер: только `BASE` + подгрузка `widget.css` / `widget.js` |
+| `src/app/entry-widget.ts`   | IIFE-бандл: API монтирования и автозапуск на JugRu                                    |
+| `src/modules/jugru/`        | Логика внедрения на страницу хоста (обновляется вместе с виджетом)                    |
+| `src/modules/better-event/` | Логика расширения, фичи и central-panel                                               |
+| `src/modules/ui/`           | Переиспользуемые UI-компоненты                                                        |
 
 Каждый виджет живёт отдельно, но делит общую инфраструктуру: userscript грузит бандл → `widget.js` сам находит якорь и монтируется.
 
@@ -21,12 +22,12 @@
 
 ```
 src/
-  app/              # entry, init (bootstrap, global API)
+  app/              # entry, init (autostart)
   modules/
-    widget/         # UI + mount API
+    better-event/   # логика расширения, features/, central-panel
+    ui/             # UI-компоненты
     jugru/          # интеграция с beta.jugru.org
   common/           # мелкие утилиты (app-root)
-  globals/          # глобальные типы (Window.BetterEvent)
 ```
 
 Слой `pages/` не используется — проект без роутинга (embeddable widget).
@@ -52,7 +53,7 @@ Userscript намеренно тонкий (~20 строк): при обновл
 ## Как это устроено
 
 ```
-userscript (BASE + css/js) → widget.js → app/init → modules/jugru → modules/widget
+userscript (BASE + css/js) → widget.js → app/init → modules/jugru → modules/better-event
 ```
 
 | Артефакт                            | Назначение             |
