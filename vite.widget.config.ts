@@ -23,7 +23,7 @@ export default defineConfig({
     emptyOutDir: false,
     cssCodeSplit: false,
     lib: {
-      entry: resolve(__dirname, "src/widget.ts"),
+      entry: resolve(__dirname, "src/app/entry-widget.ts"),
       name: "BetterEvent",
       formats: ["iife"],
       fileName: () => "widget.js",

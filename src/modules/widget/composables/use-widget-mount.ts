@@ -1,16 +1,9 @@
 import { createApp, type App as VueApp } from "vue";
 
-import { setAppRoot } from "./appRoot";
-import { bootstrapJugru } from "./jugru/bootstrap";
-import WidgetApp from "./WidgetApp.vue";
+import { setAppRoot } from "@/common/utilities/app-root";
 
-export interface WidgetOptions {
-  /** Дополнительные опции виджета — будут расширены позже */
-}
-
-export interface WidgetInstance {
-  unmount: () => void;
-}
+import WidgetApp from "../components/widget-app.vue";
+import type { WidgetInstance, WidgetOptions } from "../types/widget-types";
 
 const instances = new WeakMap<HTMLElement, VueApp>();
 
@@ -54,25 +47,4 @@ export function mountWidget(
 
 export function mount(container: HTMLElement): () => void {
   return mountWidget(container).unmount;
-}
-
-declare global {
-  interface Window {
-    BetterEvent?: {
-      mount: typeof mount;
-      mountWidget: typeof mountWidget;
-    };
-  }
-}
-
-if (typeof window !== "undefined") {
-  window.BetterEvent = { mount, mountWidget };
-
-  const start = () => bootstrapJugru(mount);
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start, { once: true });
-  } else {
-    start();
-  }
 }
