@@ -4,15 +4,32 @@
 
 Набор инструментов, которые улучшают UX работы с [JugRu](https://beta.jugru.org): виджеты и userscript-расширения, встраиваемые прямо в страницы платформы. JugRu написан на React — мы добавляем поверх него удобные Vue-компоненты, не ломая нативный интерфейс.
 
+> Вся работа происходит через ИИ агентов (Cursor / Codex).
+
 ## Что внутри
 
-| Часть           | Зачем                                                                                 |
-| --------------- | ------------------------------------------------------------------------------------- |
-| `userscripts/`  | Минимальный Tampermonkey-лоадер: только `BASE` + подгрузка `widget.css` / `widget.js` |
-| `src/widget.ts` | IIFE-бандл: API монтирования и автозапуск на JugRu                                    |
-| `src/jugru/`    | Логика внедрения на страницу хоста (обновляется вместе с виджетом)                    |
+| Часть                     | Зачем                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------- |
+| `userscripts/`            | Минимальный Tampermonkey-лоадер: только `BASE` + подгрузка `widget.css` / `widget.js` |
+| `src/app/entry-widget.ts` | IIFE-бандл: API монтирования и автозапуск на JugRu                                    |
+| `src/modules/jugru/`      | Логика внедрения на страницу хоста (обновляется вместе с виджетом)                    |
+| `src/modules/widget/`     | UI и composable монтирования виджета                                                  |
 
 Каждый виджет живёт отдельно, но делит общую инфраструктуру: userscript грузит бандл → `widget.js` сам находит якорь и монтируется.
+
+## Структура (FEOD)
+
+```
+src/
+  app/              # entry, init (bootstrap, global API)
+  modules/
+    widget/         # UI + mount API
+    jugru/          # интеграция с beta.jugru.org
+  common/           # мелкие утилиты (app-root)
+  globals/          # глобальные типы (Window.BetterEvent)
+```
+
+Слой `pages/` не используется — проект без роутинга (embeddable widget).
 
 ## Установка (Tampermonkey)
 
@@ -35,7 +52,7 @@ Userscript намеренно тонкий (~20 строк): при обновл
 ## Как это устроено
 
 ```
-userscript (BASE + css/js) → widget.js → bootstrap → WidgetApp
+userscript (BASE + css/js) → widget.js → app/init → modules/jugru → modules/widget
 ```
 
 | Артефакт                            | Назначение             |
@@ -51,4 +68,4 @@ vp run build    # dist/ + widget.js
 vp check        # форматирование, линт, типы
 ```
 
-Стек: Vue 3, TypeScript, Vite+.
+Стек: Vue 3, TypeScript, Vite+, FEOD.
