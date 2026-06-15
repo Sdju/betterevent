@@ -1,0 +1,57 @@
+/**
+ * Dev fallbacks for shadcn-compatible semantic CSS variables.
+ * On JugRu pages the host already defines the same names — prefer var(--…) there.
+ */
+
+:root {
+  --background: #ffffff;
+  --foreground: #030712;
+  --card: #ffffff;
+  --card-foreground: #030712;
+  --primary: #101828;
+  --primary-foreground: #f9fafb;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #101828;
+  --muted: #f3f4f6;
+  --muted-foreground: #6a7282;
+  --accent: #f3f4f6;
+  --accent-foreground: #101828;
+  --destructive: #e40014;
+  --destructive-foreground: #9f0712;
+  --success: #00bb7f;
+  --success-foreground: #004e3b;
+  --warning: #edb200;
+  --warning-foreground: #733e0a;
+  --info: #8d54ff;
+  --info-foreground: #4d179a;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #99a1af;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #f9fafb;
+  --card: #101828;
+  --card-foreground: #f9fafb;
+  --primary: #e5e7eb;
+  --primary-foreground: #101828;
+  --secondary: #1e2939;
+  --secondary-foreground: #f9fafb;
+  --muted: #1e2939;
+  --muted-foreground: #99a1af;
+  --accent: #1e2939;
+  --accent-foreground: #f9fafb;
+  --destructive: #ff6568;
+  --destructive-foreground: #e40014;
+  --success: #00bb7f;
+  --success-foreground: #009767;
+  --warning: #edb200;
+  --warning-foreground: #cd8900;
+  --info: #8d54ff;
+  --info-foreground: #7f22fe;
+  --border: #ffffff1a;
+  --input: #ffffff26;
+  --ring: #6a7282;
+}

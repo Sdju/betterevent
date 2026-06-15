@@ -14,3 +14,11 @@ Docs are local at `node_modules/vite-plus/docs` or online at https://viteplus.de
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
 <!--VITE PLUS END-->
+
+## JugRu host styling
+
+BetterEvent widgets inject into [beta.jugru.org](https://beta.jugru.org). Before styling UI:
+
+1. Read [`reference/jugru/README.md`](reference/jugru/README.md).
+2. On the live host, use existing CSS variables (`var(--background)`, `var(--primary)`, `var(--border)`, `var(--radius)`, etc.) — inspect `:root` in DevTools if unsure.
+3. For local dev only, import [`reference/jugru/palette.css`](reference/jugru/palette.css) as approximate fallbacks.
